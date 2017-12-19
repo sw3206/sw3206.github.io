@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        body{
+            margin:0;
+        }
+        video{
+            position:fixed;
+            min-width:100%;
+            min-height:100%;
+            width:auto;
+            heigth:auto;
+            z-index:-9999;
+        }
+        .header{
+            vertical-align: middle;
+            width:1170px;
+            height:70px;
+        }
+        div.navigation{
+            float:right;
+        }
+        ul li{
+            float:left;
+            list-style:none;
+            width:100px;
+        }
+        a{
+            font-weight:bold;
+            text-decoration:none;
+            font-family: 微软雅黑;
+        }
+        a:link{
+            color:white;
+        }
+        a:hover{
+            color:gray;
+        }
+        div.ct{
+            margin-left:90px;
+            width:1250px;
+            margin-top:0px;
+            padding-top:40px;
+        }
+        #content1{
+            padding-top:30px;
+            font-size: 4em;
+            font-family: 微软雅黑;
+            font-weight:bold;
+            color:white;
+        }
+        button{
+            height:50px;
+            width:200px;
+            border-radius:25px;
+            background-color:#FF7F50;
+            color:white;
+        }
+    </style>
+</head>
+<body >
+<video autoplay="autoplay" loop="loop"  style="width:100%;">
+    <source   src="../video/body.mp4">
+</video>
+<div class="ct" align="left" >
+    <table   class="header" border="0"  cellspacing="0" cellpadding="0">
+        <tr>
+            <td><li  style="list-style-type: none; font-size: 50px;color: #00649d; text-shadow: 0px 5px 5px #FF0000">BMI360</li></td>
+            <td>
+                <div class="navigation">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="../html/index.html">Visualizer</a></li>
+
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="center" align="left">
+        <p id="content1">Step-by-step strength<br>training designed to<br>push your limits.</p>
+        <button><a href="index.html" style="color: white">Visualize Your BMI Now</a></button>
+    </div>
+</div>
+</body>
+</html>
