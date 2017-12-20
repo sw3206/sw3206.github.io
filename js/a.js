@@ -691,18 +691,14 @@
 
             return ret;
         },
-
-        // arg is for internal usage only
-        map: function( elems, callback, arg ) {
+  map: function( elems, callback, arg ) {
             var value, key,
                 ret = [],
                 i = 0,
                 length = elems.length,
-                // jquery objects are treated as arrays
+                
                 isArray = elems instanceof jQuery || length !== undefined && typeof length === "number" && ( ( length > 0 && elems[ 0 ] && elems[ length -1 ] ) || length === 0 || jQuery.isArray( elems ) ) ;
-
-            // Go through the array, translating each of the items to their
-            if ( isArray ) {
+ if ( isArray ) {
                 for ( ; i < length; i++ ) {
                     value = callback( elems[ i ], i, arg );
 
@@ -838,14 +834,12 @@
 
                 // If IE event model is used
             } else {
-                // Ensure firing before onload, maybe late but safe also for iframes
+                
                 document.attachEvent( "onreadystatechange", DOMContentLoaded );
 
-                // A fallback to window.onload, that will always work
+                
                 window.attachEvent( "onload", jQuery.ready );
 
-                // If IE and not a frame
-                // continually check to see if the document is ready
                 var top = false;
 
                 try {
@@ -1349,18 +1343,15 @@
 
         input.setAttribute( "checked", "checked" );
 
-        // #11217 - WebKit loses check when the name is after the checked attribute
+        
         input.setAttribute( "name", "t" );
 
         div.appendChild( input );
         fragment = document.createDocumentFragment();
         fragment.appendChild( div.lastChild );
 
-        // WebKit doesn't clone checked state correctly in fragments
         support.checkClone = fragment.cloneNode( true ).cloneNode( true ).lastChild.checked;
 
-        // Check if a disconnected checkbox will retain its checked
-        // value of true after appended to the DOM (IE6/7)
         support.appendChecked = input.checked;
 
         fragment.removeChild( input );
@@ -2253,7 +2244,7 @@
             var ret, hooks, notxml,
                 nType = elem.nodeType;
 
-            // don't get/set attributes on text, comment and attribute nodes
+            
             if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
                 return;
             }
@@ -2262,7 +2253,6 @@
                 return jQuery( elem )[ name ]( value );
             }
 
-            // Fallback to prop when attributes are not supported
             if ( typeof elem.getAttribute === "undefined" ) {
                 return jQuery.prop( elem, name, value );
             }
@@ -2442,11 +2432,9 @@
         }
     });
 
-// Hook for boolean attributes
     boolHook = {
         get: function( elem, name ) {
-            // Align boolean attributes with corresponding properties
-            // Fall back to attribute presence where some booleans are not supported
+            
             var attrNode,
                 property = jQuery.prop( elem, name );
             return property === true || typeof property !== "boolean" && ( attrNode = elem.getAttributeNode(name) ) && attrNode.nodeValue !== false ?
@@ -6355,14 +6343,12 @@
                 }
             }
 
-            // Append elements to a provided document fragment
             if ( fragment ) {
-                // Special handling of each script element
+     
                 handleScript = function( elem ) {
-                    // Check if we consider it executable
+                   
                     if ( !elem.type || rscriptType.test( elem.type ) ) {
-                        // Detach the script and store it in the scripts array (if provided) or the fragment
-                        // Return truthy to indicate that it has been handled
+                        
                         return scripts ?
                             scripts.push( elem.parentNode ? elem.parentNode.removeChild( elem ) : elem ) :
                             fragment.appendChild( elem );
@@ -8542,14 +8528,11 @@
 
                     // We need to compute starting value
                     if ( unit !== "px" && start ) {
-                        // Iteratively approximate from a nonzero starting point
-                        // Prefer the current property, because this process will be trivial if it uses the same units
-                        // Fallback to end or a simple constant
+                        
                         start = jQuery.css( tween.elem, prop, true ) || end || 1;
 
                         do {
-                            // If previous iteration zeroed out, double until we get *something*
-                            // Use a string for doubling factor so we don't accidentally see scale as unchanged below
+                            
                             scale = scale || ".5";
 
                             // Adjust and apply
@@ -13722,7 +13705,7 @@
 
                 if(this._intersectsWith(this.containers[i].containerCache)) {
 
-                    // if we've already found a container and it's more "inner" than this, then continue
+                   
                     if(innermostContainer && $.contains(this.containers[i].element[0], innermostContainer.element[0])) {
                         continue;
                     }
@@ -13731,7 +13714,7 @@
                     innermostIndex = i;
 
                 } else {
-                    // container doesn't intersect. trigger "out" event if necessary
+                   
                     if(this.containers[i].containerCache.over) {
                         this.containers[i]._trigger("out", event, this._uiHash(this));
                         this.containers[i].containerCache.over = 0;
@@ -14642,8 +14625,6 @@
                 h = ( 60 * ( r - g ) / diff ) + 240;
             }
 
-            // chroma (diff) == 0 means greyscale which, by definition, saturation = 0%
-            // otherwise, saturation is based on the ratio of chroma (diff) to lightness (add)
             if ( diff === 0 ) {
                 s = 0;
             } else if ( l <= 0.5 ) {
@@ -15030,7 +15011,7 @@
                             speed, easing, callback );
                     }
                 } else {
-                    // without force parameter
+                
                     return $.effects.animateClass.call( this,
                         { toggle: classNames }, force, speed, easing );
                 }
@@ -15045,17 +15026,11 @@
         });
 
     })();
-
-    /******************************************************************************/
-    /*********************************** EFFECTS **********************************/
-    /******************************************************************************/
-
-    (function() {
+(function() {
 
         $.extend( $.effects, {
             version: "1.10.0",
 
-            // Saves a set of properties in a data storage
             save: function( element, set ) {
                 for( var i=0; i < set.length; i++ ) {
                     if ( set[ i ] !== null ) {
@@ -15064,7 +15039,7 @@
                 }
             },
 
-            // Restores a set of previously saved properties from a data storage
+            
             restore: function( element, set ) {
                 var val, i;
                 for( i=0; i < set.length; i++ ) {
@@ -25078,7 +25053,7 @@ function init_viewer(viewer_id, shape_data) {
         scene.add( body_mesh );
     } );
 
-    loader.load( "models/mean_" + gender_var + ".obj");
+    loader.load( "html/models/mean_" + gender_var + ".obj");
 
 
     // renderer
@@ -28535,11 +28510,6 @@ THREE.Math = {
     }
 
 };
-/**
- * @author mrdoob / http://mrdoob.com/
- * @author mikael emtinger / http://gomo.se/
- * @author alteredq / http://alteredqualia.com/
- */
 
 THREE.Object3D = function () {
 
@@ -31628,9 +31598,7 @@ THREE.Camera.prototype.lookAt = function ( vector ) {
     }
 
 };
-/**
- * @author alteredq / http://alteredqualia.com/
- */
+
 
 THREE.OrthographicCamera = function ( left, right, top, bottom, near, far ) {
 
@@ -31655,11 +31623,7 @@ THREE.OrthographicCamera.prototype.updateProjectionMatrix = function () {
     this.projectionMatrix.makeOrthographic( this.left, this.right, this.top, this.bottom, this.near, this.far );
 
 };
-/**
- * @author mrdoob / http://mrdoob.com/
- * @author greggman / http://games.greggman.com/
- * @author zz85 / http://www.lab4games.net/zz85/blog
- */
+
 
 THREE.PerspectiveCamera = function ( fov, aspect, near, far ) {
 
@@ -31677,11 +31641,6 @@ THREE.PerspectiveCamera = function ( fov, aspect, near, far ) {
 THREE.PerspectiveCamera.prototype = Object.create( THREE.Camera.prototype );
 
 
-/**
- * Uses Focal Length (in mm) to estimate and set FOV
- * 35mm (fullframe) camera is used if frame size is not specified;
- * Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
- */
 
 THREE.PerspectiveCamera.prototype.setLens = function ( focalLength, frameHeight ) {
 
@@ -31691,43 +31650,6 @@ THREE.PerspectiveCamera.prototype.setLens = function ( focalLength, frameHeight 
     this.updateProjectionMatrix();
 
 }
-
-
-/**
- * Sets an offset in a larger frustum. This is useful for multi-window or
- * multi-monitor/multi-machine setups.
- *
- * For example, if you have 3x2 monitors and each monitor is 1920x1080 and
- * the monitors are in grid like this
- *
- *   +---+---+---+
- *   | A | B | C |
- *   +---+---+---+
- *   | D | E | F |
- *   +---+---+---+
- *
- * then for each monitor you would call it like this
- *
- *   var w = 1920;
- *   var h = 1080;
- *   var fullWidth = w * 3;
- *   var fullHeight = h * 2;
- *
- *   --A--
- *   camera.setOffset( fullWidth, fullHeight, w * 0, h * 0, w, h );
- *   --B--
- *   camera.setOffset( fullWidth, fullHeight, w * 1, h * 0, w, h );
- *   --C--
- *   camera.setOffset( fullWidth, fullHeight, w * 2, h * 0, w, h );
- *   --D--
- *   camera.setOffset( fullWidth, fullHeight, w * 0, h * 1, w, h );
- *   --E--
- *   camera.setOffset( fullWidth, fullHeight, w * 1, h * 1, w, h );
- *   --F--
- *   camera.setOffset( fullWidth, fullHeight, w * 2, h * 1, w, h );
- *
- *   Note there is no reason monitors have to be the same size or in a grid.
- */
 
 THREE.PerspectiveCamera.prototype.setViewOffset = function ( fullWidth, fullHeight, x, y, width, height ) {
 
@@ -31771,10 +31693,6 @@ THREE.PerspectiveCamera.prototype.updateProjectionMatrix = function () {
     }
 
 };
-/**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
- */
 
 THREE.Light = function ( hex ) {
 
@@ -31785,9 +31703,7 @@ THREE.Light = function ( hex ) {
 };
 
 THREE.Light.prototype = Object.create( THREE.Object3D.prototype );
-/**
- * @author mrdoob / http://mrdoob.com/
- */
+
 
 THREE.AmbientLight = function ( hex ) {
 
@@ -31796,10 +31712,6 @@ THREE.AmbientLight = function ( hex ) {
 };
 
 THREE.AmbientLight.prototype = Object.create( THREE.Light.prototype );
-/**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
- */
 
 THREE.DirectionalLight = function ( hex, intensity ) {
 
@@ -31813,7 +31725,7 @@ THREE.DirectionalLight = function ( hex, intensity ) {
     this.castShadow = false;
     this.onlyShadow = false;
 
-    //
+   
 
     this.shadowCameraNear = 50;
     this.shadowCameraFar = 5000;
@@ -31831,7 +31743,6 @@ THREE.DirectionalLight = function ( hex, intensity ) {
     this.shadowMapWidth = 512;
     this.shadowMapHeight = 512;
 
-    //
 
     this.shadowCascade = false;
 
@@ -31847,8 +31758,6 @@ THREE.DirectionalLight = function ( hex, intensity ) {
 
     this.shadowCascadeArray = [];
 
-    //
-
     this.shadowMap = null;
     this.shadowMapSize = null;
     this.shadowCamera = null;
@@ -31857,10 +31766,6 @@ THREE.DirectionalLight = function ( hex, intensity ) {
 };
 
 THREE.DirectionalLight.prototype = Object.create( THREE.Light.prototype );
-/**
- * @author alteredq / http://alteredqualia.com/
- */
-
 THREE.HemisphereLight = function ( skyColorHex, groundColorHex, intensity ) {
 
     THREE.Light.call( this, skyColorHex );
@@ -31874,9 +31779,6 @@ THREE.HemisphereLight = function ( skyColorHex, groundColorHex, intensity ) {
 };
 
 THREE.HemisphereLight.prototype = Object.create( THREE.Light.prototype );
-/**
- * @author mrdoob / http://mrdoob.com/
- */
 
 THREE.PointLight = function ( hex, intensity, distance ) {
 
@@ -31889,10 +31791,6 @@ THREE.PointLight = function ( hex, intensity, distance ) {
 };
 
 THREE.PointLight.prototype = Object.create( THREE.Light.prototype );
-/**
- * @author alteredq / http://alteredqualia.com/
- */
-
 THREE.SpotLight = function ( hex, intensity, distance, angle, exponent ) {
 
     THREE.Light.call( this, hex );
@@ -31922,8 +31820,6 @@ THREE.SpotLight = function ( hex, intensity, distance, angle, exponent ) {
     this.shadowMapWidth = 512;
     this.shadowMapHeight = 512;
 
-    //
-
     this.shadowMap = null;
     this.shadowMapSize = null;
     this.shadowCamera = null;
@@ -31932,10 +31828,6 @@ THREE.SpotLight = function ( hex, intensity, distance, angle, exponent ) {
 };
 
 THREE.SpotLight.prototype = Object.create( THREE.Light.prototype );
-/**
- * @author alteredq / http://alteredqualia.com/
- */
-
 THREE.Loader = function ( showStatus ) {
 
     this.showStatus = showStatus;
@@ -32144,14 +32036,8 @@ THREE.Loader.prototype = {
             return ( rgb[ 0 ] * 255 << 16 ) + ( rgb[ 1 ] * 255 << 8 ) + rgb[ 2 ] * 255;
 
         }
-
-        // defaults
-
-        var mtype = "MeshLambertMaterial";
+var mtype = "MeshLambertMaterial";
         var mpars = { color: 0xeeeeee, opacity: 1.0, map: null, lightMap: null, normalMap: null, bumpMap: null, wireframe: false };
-
-        // parameters from model file
-
         if ( m.shading ) {
 
             var shading = m.shading.toLowerCase();
@@ -55534,10 +55420,6 @@ THREE.ShapeGeometry.prototype.addShapeList = function ( shapes, options ) {
     return this;
 
 };
-
-/**
- * Adds a shape to THREE.ShapeGeometry, based on THREE.ExtrudeGeometry.
- */
 THREE.ShapeGeometry.prototype.addShape = function ( shape, options ) {
 
     if ( options === undefined ) options = {};
@@ -56494,18 +56376,11 @@ THREE.PolyhedronGeometry = function ( vertices, faces, radius, detail ) {
         return Math.atan2( vector.z, -vector.x );
 
     }
-
-
-    // Angle above the XZ plane.
-
-    function inclination( vector ) {
+ function inclination( vector ) {
 
         return Math.atan2( -vector.y, Math.sqrt( ( vector.x * vector.x ) + ( vector.z * vector.z ) ) );
 
     }
-
-
-    // Texture fixing helper. Spheres have some odd behaviours.
 
     function correctUV( uv, vector, azimuth ) {
 
